@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">		<!-- directives starts with ng-* -->
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS | ng-modal/ng-bind</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+	<!-- SPA = Single Page Applications -->
+	<div>ng-bind with 'input' type work like that : </div>
+	<input type="text" ng-model="name">		
+	<div ng-bind="name"></div>
+	<hr>
+	
+	<!-- be careful some dirctive only work with some html tag type. e.g. ng-bind only work with 'input' type -->
+	<!-- the following one with no work -->
+	<div>The following one ng-bind does no work as no 'input' work with it : </div>
+	<div ng-modal="name1" contenteditable="true"></div>
+	<div ng-bind="name1"></div>
+	<hr>
+
+	<div>ng-bind with 'textarea' type work like that : </div>
+	<textarea ng-model="name2"></textarea>	
+	<div ng-bind="name2"></div>
+	<hr>
+	
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="ui.bootstrap.demo">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.0.0.js"></script>
+    <script src="example.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<style type="text/css">
+  form.tab-form-demo .tab-pane {
+    margin: 20px 20px;
+  }
+</style>
+	
+		<!--
+		<div id="tabForAddService">
+			<div class="container">
+				<div class="row">
+					<div class="singleTab col-md-6">
+						<div class="menu_but">
+							<image class="menu_but_img" src="images/Hamburger_64/Hamburger_ACTIVE_64.png">
+						</div>			
+					</div>
+					
+					<div class="singleTab col-md-6">
+						<div class="toolkit_but" isDisabled="Y">
+							<image class="toolkit_but_img" src="images/ToolKit_64/ToolKit_DISABLED_64.png">
+							<span class="badge badge-configpage" style="display:none; background-color:#FF9900;position: absolute;top: 5%;right: 3%;font-size: 2.0vw !important;width: 20%;border-radius: 90px !important;"></span>
+						</div>
+					</div>	
+				</div>
+			</div>
+
+		</div>
+		<div id="addMarkerPanel" style="display: block;">
+			--AddMarkerPanel--
+			
+		</div>
+		<div id="tabForShoppingCart" >
+		--tabForShoppingCart--
+			
+			
+		</div>
+		-->
+<div ng-controller="TabsDemoCtrl" style="width:18%;">
+<uib-tabset active="activeJustified" justified="true">
+    <uib-tab index="0" heading="Justified">
+		<img src="images/ToolKit_64/ToolKit_DISABLED_64.png">
+	
+	</uib-tab>
+    <uib-tab index="1" heading="SJ">Short Labeled Justified content</uib-tab>
+    
+	
+</uib-tabset>
+</div>
+
+
+	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

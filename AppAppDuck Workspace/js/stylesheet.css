@@ -1,0 +1,29 @@
+.empty-row {
+	height: 40px;
+}
+
+#home-panel {
+	background-color: beige;
+}
+#home-panel h1 {
+	font-size: 300%;
+	color: #ff6600;
+}
+
+#home-panel h3 {
+	font-size: 200%;
+}
+
+#home-panel img {
+	width: 90%;
+}
+
+#overview-panel {
+	background-color: papayawhip;
+}
+
+.flip-card {
+	width: 90%;
+	height: 100px;
+	background-color: beige;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS | ng-repeat</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<!-- Good website : https://docs.angularjs.org/guide/-->
+</head>
+<body>
+	<div ng-init="myFavLan=[{name:'PHP',extention:'.php'},{name:'Javascrpt', extention:'.js'},{name:'Ruby', extention:'.rb'}, {name:'C++', extention:'.cpp'}]">
+		
+		<p ng-repeat="language in myFavLan">
+			Name: {{ language.name }}<br>
+			Extention: {{ language.extention }} <br>
+		</p>
+
+	<!--
+			for(x in array) {
+				print x.name, e.extention
+			}
+		-->
+	</div>
+
+	
+</body>
+</html>

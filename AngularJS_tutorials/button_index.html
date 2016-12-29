@@ -1,0 +1,167 @@
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+<script src="js/jquery-3.1.0.min.js"></script>
+
+<script>
+		<!-- add to controller-->
+var addServiceItem = [
+	{
+		id : "CCM",
+		productid : "CCM",
+		saleid : "",
+		serviceid : "",
+		cityid : "957",
+		address : "Hermes House, 10 Middle Road, Tsimshatsui, Kowloon, Hong Kong",
+		serviceprovider : "Microsoft"
+	} ,
+	{
+		id : "CCM",
+		productid : "CCM",
+		saleid : "",
+		serviceid : "",
+		cityid : "648",
+		address : "6 Temasek Boulevard #41-04A/05 Suntec Tower 4 Singapore 038986",
+		serviceprovider : "Microsoft"
+	},
+	{
+		id : "IAS", 
+		productid : "IAS",
+		saleid : "",
+		serviceid : "",
+		cityid : "957",
+		address : "2/F Telecom House, 3 Gloucester Road Wan Chai",
+		serviceprovider : "IaaS"
+	},
+	{
+		id : "IAS", 
+		productid : "IAS", 
+		saleid : "", 
+		serviceid : "", 
+		cityid : "569", 
+		address : "Suite CR8 Cage C0803 CRG West 12100 Sunrise Valley Drive, RESTON VA 20191, United States", 
+		serviceprovider : "IaaS"
+	},
+	{
+		id : "CCM", 
+		productid : "CCM", 
+		saleid : "", 
+		serviceid : "", 
+		cityid : "957", 
+		address : "Hermes House, 10 Middle Road, Tsimshatsui, Kowloon, Hong Kong", 
+		serviceprovider : "Ali Cloud"
+	}
+
+];
+var tempNewServiceid = 0;
+function deleteService(tempId) {
+	$("#tempNewService" + tempId).remove();
+
+	//tempNewServiceid--;
+	console.log("tempNewServiceid is : " + tempNewServiceid);
+}
+
+
+function createServiceDetail(serviceitem){
+	console.log("tempNewServiceid is : " + tempNewServiceid);
+	var html = "";
+	html += '<div id="tempNewService' + tempNewServiceid + '"> Address : ' + serviceitem.address + '<button onClick="deleteService(' + tempNewServiceid + ')"> Close </button></div>';
+	$(".addArea").append(html);
+
+	tempNewServiceid++;
+
+}
+
+
+function addService(item) {
+	var selectedService = null;
+	switch(item){
+		case 'msa_hk':
+			selectedService = addServiceItem[0];
+			break;
+		case 'msa_singapore':
+			selectedService = addServiceItem[1];
+			break;
+		case 'iaas_hk':
+			selectedService = addServiceItem[2];
+			break;
+		case 'iaas_reston':
+			selectedService = addServiceItem[3];
+			break;
+		case 'alic_hk':
+			selectedService = addServiceItem[4];
+			break;
+	}
+
+	console.log(selectedService);
+	createServiceDetail(selectedService);
+}
+
+
+
+
+</script>
+<body>
+	<button id='addColor' onClick='addColor()'>
+	<div>
+		<img class='logo' src='XaaS_Icons_svg/Cloud_Connect.svg' width='120px'>
+		<img class='logo' src='XaaS_Icons_svg/Database.svg' width='120px'>
+	
+	</div>
+	<!--div class="newServiceArea" style="position: absolute; top:0%; left: 0%; z-index: 1000; float: left;">
+		<h3>NEW SERVICE:</h3>
+		<div class="addArea">
+			
+		</div>
+
+	</div-->
+
+	<div class="addMarkerPanel" style="display:block;">
+		<div style="margin: 1.1vw; max-width:100%;">
+			<button class="addServiceBtn" onClick="addService('msa_hk')">
+				<div class="servicelocation">
+					<img id="location_Hong Kong" src="images/IaaS_256.png" style="width: 30%; float: left;">					
+				</div>
+				<div class="addServiceText">MS Azure<br>(Hong Kong)</div>
+			</button>	
+		</div>
+		<div style="margin: 1.1vw; max-width:100%; ">
+			<button class="addServiceBtn" onClick="addService('msa_singapore')">
+				<div class="servicelocation">
+					<img id="location_Singapore" src="images/IaaS_256.png" style="width: 30%; float: left;">
+				</div>
+				<div class="addServiceText">MS Azure<br>(Singapore)</div>
+			</button>
+		</div>
+		<div style="margin: 1.1vw; max-width:100%">
+			<button class="addServiceBtn" onClick="addService('iaas_hk')">
+				<div class="servicelocation">
+					<img id="location_Baltimore" src="images/CloudConnect_256.png" style="width: 30%; float: left;">
+				</div>
+				<div class="addServiceText">IaaS<br>(Hong Kong)</div>
+			</button>
+		</div>
+		<div style="margin: 1.1vw; max-width:100%">
+			<button class="addServiceBtn" onClick="addService('iaas_reston')">
+				<div class="servicelocation">
+					<img id="location_Hong Kong" src="images/CloudConnect_256.png" style="width: 30%; float: left;">
+				</div>
+				<div class="addServiceText">&nbsp;&nbsp;IaaS<br>&nbsp;&nbsp;(Reston)</div>
+			</button>
+		</div>
+
+		<div style="margin: 1.1vw; max-width:100%">
+			<button class="addServiceBtn" onClick="addService('alic_hk')">
+				<div class="servicelocation">
+					<img id="location_Hong Kong" src="images/IaaS_256.png" style="width: 30%; float: left;">
+				</div>
+				<div class="addServiceText">AliCloud<br>(Hong Kong)</div>
+			</button>
+		</div>
+</div>
+
+</body>
+
+</html>

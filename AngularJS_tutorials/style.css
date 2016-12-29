@@ -1,0 +1,37 @@
+.addMarkerPanel {
+	position: absolute !important;
+	z-index: 1000;
+	height: 87.9%;
+	width: 18.0% !important;
+	top: 12.1%;
+	right: 0%;
+	background-color: rgba(249,249,251,1);
+	font-size: 100%;
+	cursor: pointer;
+	width: 17%; 
+	background-color:#F9F9FB;
+}
+
+.addServiceBtn {
+	padding: 0.8vw 1.6vw; 
+	border-radius: 6px;
+}
+
+.addServiceText {
+	
+	float:left;	
+	display: inline-block;
+	padding: 0.5vw 0vw 0.8vw 1vw; 
+	border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.servicelocation {
+	margin-top: 10%;	
+	background-color: #F9F9FB;
+	color: black;
+	display: inline;
+	width: 30%;
+	
+}

@@ -1,0 +1,207 @@
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+<!--script src="js/jquery-3.1.0.min.js"></script-->
+<!--script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.0.1.js"></script-->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script>
+		<!-- add to controller-->
+var isCollapsed = true;
+var NewService = [
+	{
+		id : "CCM",
+		productid : "CCM",
+		saleid : "",
+		serviceid : "",
+		cityid : "957",
+		address : "Hermes House, 10 Middle Road, Tsimshatsui, Kowloon, Hong Kong",
+		serviceprovider : "Microsoft"
+	} ,
+	{
+		id : "CCM",
+		productid : "CCM",
+		saleid : "",
+		serviceid : "",
+		cityid : "648",
+		address : "6 Temasek Boulevard #41-04A/05 Suntec Tower 4 Singapore 038986",
+		serviceprovider : "Microsoft"
+	},
+	{
+		id : "IAS", 
+		productid : "IAS",
+		saleid : "",
+		serviceid : "",
+		cityid : "957",
+		address : "2/F Telecom House, 3 Gloucester Road Wan Chai",
+		serviceprovider : "IaaS"
+	},
+	{
+		id : "IAS", 
+		productid : "IAS", 
+		saleid : "", 
+		serviceid : "", 
+		cityid : "569", 
+		address : "Suite CR8 Cage C0803 CRG West 12100 Sunrise Valley Drive, RESTON VA 20191, United States", 
+		serviceprovider : "IaaS"
+	},
+	{
+		id : "CCM", 
+		productid : "CCM", 
+		saleid : "", 
+		serviceid : "", 
+		cityid : "957", 
+		address : "Hermes House, 10 Middle Road, Tsimshatsui, Kowloon, Hong Kong", 
+		serviceprovider : "Ali Cloud"
+	}
+
+];
+
+		// information for New Service : 
+$(function() {
+	$("#service-provider-choice").change(function(){
+		var $dropdown = $(this);
+		
+		$.getJSON("data/newServiceData.json", function(data){
+			var key = $dropdown.val();
+			var vals = [];
+			var keys = [];
+			
+			switch(key){
+				case "Microsoft":
+					vals = data.Microsoft["value"].split(",");
+					keys = data.Microsoft["key"].split(",");
+					break;
+				case "IaaS":
+					vals = data.IaaS["value"].split(",");
+					keys = data.IaaS["key"].split(",");
+					break;
+				case "AliCloud":
+					vals = data.AliCloud["value"].split(",");
+					keys = data.AliCloud["key"].split(",");
+					break;
+				case 'base':
+					vals = ['Please choose from above'];
+			
+			}	// switch
+			
+			var $addressChoice = $("#address-choice");
+			$addressChoice.empty();
+			$.each(vals, function(index, value){
+				$addressChoice.append("<option value='" + keys[index] + "'>" + value + "</option>");	
+			});	// $.each(vals)
+		
+		}); // $.getJSON
+
+	});
+});
+function checkVRFName(){
+	var temp = JSON.parse(window.localStorage.getItem("selectedVRF"));
+	var vrf_Name_Choice = [];
+	if(temp != null && temp != ""){
+		isCollapsed = false;
+		$.each(temp, function(key, value){
+			if(value == "checked"){
+				vrfNameChoice.push(key);
+			}
+		
+		});
+		
+		var $vrfNameChoice = $("#vrf-name-choice");
+		$vrfNameChoice.empty();
+		$.each(temp, function(index, value){
+			$vrfNameChoice.append("<option value='" + value + "'>" + value + "</option>");	
+		});	// $.each(temp)
+	
+	} else if(temp == null || temp == {}){
+		alert("Cannot add New Service due to missing VRF Name. ");
+	}
+
+}
+
+function submitNewService(){
+		// get data from New Service Row :
+		//var VRFName_choice = $("#vrf-name-choice").val(); 
+		var SP_choice = $("#service-provider-choice").val();
+
+		if(SP_choice == "AliCloud"){
+			SP_choice = "Ali Cloud";
+		}
+		var CityId_choice = $("#address-choice").val();
+		var tempObj = [];
+		for(var index = 0; index < NewService.length; index++){
+			if(NewService[index].cityid == CityId_choice && NewService[index].serviceprovider == SP_choice){
+				tempObj = NewService[index];
+			}
+		}	// End for loop
+		alert(tempObj);
+		var srDetails = {
+						"saleid" : tempObj.saleid,
+						"serviceid" : tempObj.serviceid,
+						"serviceProvider" : tempObj.serviceprovider						
+				};
+				//setLocalStorage(productid,tempObj,'Add','Add',cityid);
+
+		// setLocalStorage(tempObj.productid, srDetails, "Add", "Add", tempObj.cityid);
+		alert("tempObj.productid is : " + tempObj.productid);
+		alert("srDetails is : " + srDetails);
+		alert("tempObj.cityid is : " + tempObj.cityid);
+		alert("A new service is added!");
+		
+		
+		//alert();
+		isCollapsed = true;
+
+	};
+
+
+
+</script>
+<body>
+<div style="margin: 1vw; max-width:100%">
+	<button type='button' class='btn btn-default' ng-click="checkVRFName()">
+		<div style="float: left; width: 100%; text-align: center;">
+			<h3> + Add Service </h3>
+		</div>
+	</button>
+</div>
+
+<div uib-collapse="isCollapsed">
+		<uib-accordion>
+		    <div uib-accordion-group class="panel-default new-service-row" heading="New Service -- please select details here" >
+				<p>Please, to select the <b>VRF Name</b> , <b>Service Provider</b> and <b>Address</b> for your new service, click the dropdown lists below : </p>
+				<p>Step 1 : VRF Name</p>
+				<select id="vrf-name-choice">
+					<option>Please choose VRF Name First </option>
+				</select>
+				
+				<p>Step 2 : Service Provider</p>
+				<select id="service-provider-choice">
+					<option selected value="base">Please Select</option>
+					<option value="Microsoft">Microsoft</option>
+					<option value="IaaS">IaaS</option>
+					<option value="AliCloud">Ali Cloud</option>	
+				</select>
+				
+				<br>
+				<p>Step 3 : Address</p>
+				<select id="address-choice">
+					<option>Please choose from above</option>
+				</select>
+				
+				
+				
+				<button class="btn btn-default" onClick="submitNewService()">Submit</button>
+				<button class="btn btn-danger" onClick="isCollapsed = !isCollapsed">Cancel</button>
+			</div>
+		</uib-accordion>
+	</div>	
+
+
+
+</body>
+
+</html>
